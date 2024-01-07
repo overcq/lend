@@ -4,9 +4,9 @@
     |    ng | conversion
 _opRWTng-rwt=
 
-universal line ends converter to "\n", "\r\n" or "\r".
+Universal line ends converter to "\n", "\r\n" or "\r"
 - - - - - - - - - - - - - - - - - - - -
-automatycznie przełącza się do innego typu zakończenia wiersza, ale tylko wtedy gdy kolejna linia nie jest pusta.
+Automatycznie przełącza się do innego typu zakończenia wiersza, ale tylko wtedy gdy kolejna linia nie jest pusta.
 ---------------------------------------
 ==================================== */
 #include <stdbool.h>
@@ -29,7 +29,7 @@ for_sys_arg_proc(
     char *null[]
 )
 {   if( output_lineend )
-        return ARG_PROC_RET_IGNORE;
+        return Z_arg_proc_ret_Z_ignore;
     switch( param_no )
     {   case 1:
         case 3:
@@ -48,7 +48,7 @@ for_sys_arg_proc(
             output_lineend = "\r";
             break;
     }
-    return ARG_PROC_RET_ACCEPT;
+    return Z_arg_proc_ret_Z_accept;
 }
 static
 enum Z_arg_proc_ret
@@ -58,7 +58,7 @@ to_lineend_arg_proc(
     char *null[]
 )
 {   if( output_lineend )
-        return ARG_PROC_RET_IGNORE;
+        return Z_arg_proc_ret_Z_ignore;
     switch( param_no )
     {   case 0:
             output_lineend = "\n";
@@ -70,7 +70,7 @@ to_lineend_arg_proc(
             output_lineend = "\r";
             break;
     }
-    return ARG_PROC_RET_ACCEPT;
+    return Z_arg_proc_ret_Z_accept;
 }
 static
 enum Z_arg_proc_ret
@@ -78,7 +78,7 @@ def_proc(
     int argc,
     char *argv[]
 )
-{   return ARG_PROC_RET_REJECT;
+{   return Z_arg_proc_ret_Z_reject;
 }
 int
 main(
@@ -92,7 +92,7 @@ main(
         argv++;
     }
     struct Z_avail_arg avail_args[] =
-    {   "for-sys", "s", false, false, false, 10, (const char *const [] ){ "network", "unix", "Windows", "Macintosh", "Linux", "BSD", "Mac OS X", "Mac OS 9", "DOS", "DEC" }, for_sys_arg_proc, "for operating system",
+    {   "for-sys", "s", false, false, false, 10, ( const char *const [] ){ "network", "unix", "Windows", "Macintosh", "Linux", "BSD", "Mac OS X", "Mac OS 9", "DOS", "DEC" }, for_sys_arg_proc, "for operating system",
         "to-lineend", "e", false, false, false, 3, ( const char *const [] ){ "lf", "crlf", "cr" }, to_lineend_arg_proc, "to line end character(s)",
     };
     parse_cmd_args( argc, argv, def_proc, sizeof( avail_args ) / sizeof( struct Z_avail_arg ), avail_args );
